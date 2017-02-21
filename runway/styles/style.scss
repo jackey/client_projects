@@ -1,0 +1,192 @@
+.body-main {
+  background: url(../misc/bg.png) no-repeat top center;
+  background-size: cover;
+  min-height: 100%;
+}
+
+h2,h1,h3,h4 {
+  margin: 0px;
+}
+
+$iphone5: 640;
+$iphone6: 750;
+
+html, body {
+  font-size:13px;
+}
+
+.body-main {
+  padding: 50px 20px 75px 20px;
+
+  .title {
+    width: 80%;
+    margin: 0 auto;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.index-body-main {
+
+  .desc {
+    margin-top: 35px;
+    text-align: center;
+
+    p {
+      font-size: 21px;
+      text-align: center;
+      font-family: "stzhongsong";
+    }
+
+    a {
+      font-size: 15px;
+      font-family: "stzhongsong";
+      display: inline-block;
+      text-align: center;
+      margin-top: 15px;
+      color: #000;
+      border-bottom: 1px solid #c7c5c5;
+
+      &.hover, &.active, &.link {
+        color: #000;
+      }
+    }
+  }
+} 
+
+@mixin button {
+  background: #000;
+  border: none;
+  line-height: 36px;
+  height: 36px;
+  width: 100%;
+  color: #fff;
+}
+
+.reg-form {
+
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 36px;
+
+  .ui-selectmenu-button {
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    padding: 0px;
+    padding-left: 36px;
+    background: #fff;
+  }
+  .ui-selectmenu-icon  {
+    position: absolute;
+    right: 10px;
+    top: 14px;
+    background: url(../misc/arrow-down.png);
+    background-repeat: no-repeat;
+    width: 13px;
+    height: 7px;
+  }
+  
+  .input-wrap {
+    position: relative;
+    border: 1px solid #777069;
+    margin-bottom: 13px;
+
+    &.action-wrap {
+      margin-top: 60px;
+    }
+  }
+
+  label {
+    font-size: 13px;
+    height: 36px;
+    line-height: 36px;
+    width: 36px;
+    text-align: center;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+  }
+
+  input, select {
+    box-sizing: border-box;
+    line-height: 36px;
+    background: #fff;
+    border-radius: 0px;
+    border: none;
+    width: 100%;
+    display: block;
+    height: 36px;
+    padding-left: 36px;
+  }
+
+  button {
+    @include button;
+  }
+}
+
+.hfull {
+  height: 100%;
+}
+
+.success-body-main {
+
+  height: 100%;
+
+  .success {
+    margin-top: 144px;
+    text-align: center;
+
+    font-size: 18px;
+    font-family: "stzhongsong";
+  }
+
+  .action-wrap {
+    margin-top: 30px;
+  }
+
+  button {
+    @include button;
+  }
+}
+
+.rule-body-main {
+  height:100%;
+  padding-bottom: 115px;
+
+  .rule {
+    margin-top: 72px;
+    text-align: left;
+
+    .inner {
+      margin-bottom: 37px;
+    }
+
+    h3 {
+      font-size: 21px;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h4 {
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+
+    span {
+      font-size: 13px;
+      color: #ccc;
+    }
+
+    button {
+      @include button;
+    }
+
+  }
+}
+
