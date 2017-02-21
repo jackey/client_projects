@@ -46,8 +46,7 @@
       method: 'POST',
       dataType: 'json',
       success: function (res) {
-        console.log(res);
-        if (res['success']) {
+        if (res['code'] == 0) {
           window.location.href = '/success.html';
         } else {
           window.location.href = '/failed.html';

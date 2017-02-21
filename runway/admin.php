@@ -1,7 +1,20 @@
 <?php
 
+require_once "./env.php";
+
 $method = $_GET['method'];
 $data = file_get_contents('php://stdin');
+
+function api_address() {
+  global $env;
+  if ($env == ENV_TEST) {
+    $api = 'http://112.65.137.222:8090/armani/getGift/apply';
+  } else {
+    $api = 'http://armanimobile.luxurybeauty.com/armani/getGift/apply';
+  }
+
+  return $api;
+}
 
 function get_method_call($method) {
   return "api_${method}";
@@ -23,29 +36,51 @@ function api_submituser() {
   $shop = $_POST['shop'];
   $city = $_POST['city'];
 
-  $pdo = new_pdo();
-  $stm = $pdo->prepare('SELECT * FROM user_submit WHERE Fphone = :phone');
-  $stm->execute(array(':phone' => $phone));
-  $results = $stm->fetchAll();
-  if (count($results) > 0) {
+  $curl = curl_init();
+  curl_setopt($curl, CURLOPT_URL, api_address() . "?" . http_build_query(array(
+    'mobile' => $phone,
+    'city' => $city,
+    'bar' => $shop
+  )));
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+  $output = curl_exec($curl);
+  curl_close($curl);
+
+  try {
     echo json_encode(array(
-      'success' => 0,
-      'msg' => '已经填写资料',
-    ));
-  } else {
-    $stm = $pdo->prepare("INSERT INTO user_submit (Fphone, Fcity, Fshop, Fcreated) VALUES (?, ?, ?, ?)");
-    $ret = $stm->execute(array(
-      $phone,
-      $city,
-      $shop,
-      time()
-    ));
-    echo json_encode(array(
-      'success' => 1,
-      'msg' => '成功填写资料',
-      'id' => $ret
+      'code' => $output,
     ));
   }
+  catch (Exception $e) {
+    // TODO::??
+  }
+
+  return ;
+
+  // $pdo = new_pdo();
+  // $stm = $pdo->prepare('SELECT * FROM user_submit WHERE Fphone = :phone');
+  // $stm->execute(array(':phone' => $phone));
+  // $results = $stm->fetchAll();
+  // if (count($results) > 0) {
+  //   echo json_encode(array(
+  //     'success' => 0,
+  //     'msg' => '已经填写资料',
+  //   ));
+  // } else {
+  //   $stm = $pdo->prepare("INSERT INTO user_submit (Fphone, Fcity, Fshop, Fcreated) VALUES (?, ?, ?, ?)");
+  //   $ret = $stm->execute(array(
+  //     $phone,
+  //     $city,
+  //     $shop,
+  //     time()
+  //   ));
+  //   echo json_encode(array(
+  //     'success' => 1,
+  //     'msg' => '成功填写资料',
+  //     'id' => $ret
+  //   ));
+  // }
 }
 
 function api_export() {

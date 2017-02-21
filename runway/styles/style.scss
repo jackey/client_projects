@@ -1,3 +1,4 @@
+
 .body-main {
   background: url(../misc/bg.png) no-repeat top center;
   background-size: cover;
@@ -13,10 +14,23 @@ $iphone6: 750;
 
 html, body {
   font-size:13px;
+  font-family: "STZhongsong","宋体","微软雅黑";
+
+  @media all and (min-height: 587px) {
+    height: 100%;
+
+    .body-main {
+      height:  100%;
+    }
+  }
 }
 
 .body-main {
   padding: 50px 20px 75px 20px;
+
+  @media screen and (min-width: 375px) {
+    padding: 50px 40px 75px 40px;
+  }
 
   .title {
     width: 80%;
@@ -36,12 +50,14 @@ html, body {
     p {
       font-size: 21px;
       text-align: center;
-      font-family: "stzhongsong";
+
+      img {
+        width: 100%;
+      }
     }
 
     a {
       font-size: 15px;
-      font-family: "stzhongsong";
       display: inline-block;
       text-align: center;
       margin-top: 15px;
@@ -77,12 +93,16 @@ html, body {
     padding: 0px;
     padding-left: 36px;
     background: #fff;
+    // color: #b8b9c8;
+  }
+  .ui-selectmenu-button.select {
+    color: #000;
   }
   .ui-selectmenu-icon  {
     position: absolute;
     right: 10px;
     top: 14px;
-    background: url(../misc/arrow-down.png);
+    background: url(../misc/arrow-down.png) !important;
     background-repeat: no-repeat;
     width: 13px;
     height: 7px;
@@ -95,6 +115,8 @@ html, body {
 
     &.action-wrap {
       margin-top: 60px;
+      text-align: center;
+      border:none;
     }
   }
 
@@ -108,6 +130,10 @@ html, body {
     left: 0px;
     top: 0px;
     z-index: 1;
+
+    &.label-phone {
+      color: #b8b8b8;
+    }
   }
 
   input, select {
@@ -124,6 +150,8 @@ html, body {
 
   button {
     @include button;
+    line-height: 34px;
+    width: 120px;
   }
 }
 
@@ -140,15 +168,17 @@ html, body {
     text-align: center;
 
     font-size: 18px;
-    font-family: "stzhongsong";
   }
 
   .action-wrap {
     margin-top: 30px;
+    text-align: center;
   }
 
   button {
     @include button;
+    line-height: 34px;
+    width: 120px;
   }
 }
 
@@ -159,9 +189,21 @@ html, body {
   .rule {
     margin-top: 72px;
     text-align: left;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
 
     .inner {
       margin-bottom: 37px;
+    }
+
+    ul {
+      list-style-type: none;
+      font-size: 16px;
+      line-height: 150%;
+      list-style-position: inside;
+      padding-left: 0px;
+      margin-left: 0px;
     }
 
     h3 {
@@ -183,8 +225,14 @@ html, body {
       color: #ccc;
     }
 
+    .action-wrap {
+      text-align: center;
+    }
+
     button {
-      @include button;
+      @include button;      
+      line-height: 34px;
+      width: 120px;
     }
 
   }
